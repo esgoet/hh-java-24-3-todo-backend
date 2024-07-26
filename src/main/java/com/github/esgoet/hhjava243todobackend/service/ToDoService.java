@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -20,19 +21,19 @@ public class ToDoService {
     }
 
     public ToDo findToDo(String id) {
-        return repository.findById(id).orElse(null);
+        return repository.findById(id).orElseThrow(() -> new NoSuchElementException("No ToDo item with id " + id + " present."));
     }
 
     public ToDo saveToDo(NewToDoDto toDo) {
         ToDo tobeSaved = new ToDo(idService.generateId(), toDo.description(), Status.OPEN);
-        return  repository.save(tobeSaved);
+        return repository.save(tobeSaved);
     }
 
     public ToDo updateToDo(String id, ToDo updatedToDo) {
         if (repository.findById(id).isPresent()) {
             return repository.save(updatedToDo);
         } else {
-            return null;
+            throw new NoSuchElementException("No ToDo item with id " + id + " present.");
         }
     }
 
