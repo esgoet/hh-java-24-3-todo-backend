@@ -11,13 +11,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ToDoService {
     private final ToDoRepository repository;
+    private final IdService idService;
 
     public List<ToDo> findToDos() {
         return repository.findAll();
     }
 
     public ToDo saveToDo(ToDo toDo) {
-        repository.save(toDo);
-        return toDo;
+        ToDo toDoToBeSaved = toDo.withId(idService.generateId());
+        repository.save(toDoToBeSaved);
+        return toDoToBeSaved;
     }
 }
