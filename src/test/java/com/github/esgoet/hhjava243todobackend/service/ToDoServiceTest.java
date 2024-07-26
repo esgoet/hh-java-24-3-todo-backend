@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -60,11 +61,11 @@ class ToDoServiceTest {
     void findToDoTest_whenNoToDoExists() {
         //GIVEN
         when(toDoRepo.findById("1")).thenReturn(Optional.empty());
-        //WHEN
-        ToDo actual = service.findToDo("1");
         //THEN
+        assertThrows(NoSuchElementException.class,
+                //WHEN
+                () -> service.findToDo("1"));
         verify(toDoRepo).findById("1");
-        assertNull(actual);
     }
 
     @Test
@@ -104,11 +105,13 @@ class ToDoServiceTest {
         //GIVEN
         ToDo updatedToDo = new ToDo("1","Clean", Status.IN_PROGRESS);
         when(toDoRepo.findById("1")).thenReturn(Optional.empty());
-        //WHEN
-        ToDo actual = service.updateToDo("1", updatedToDo);
+
         //THEN
+        assertThrows(NoSuchElementException.class,
+                //WHEN
+                () -> service.updateToDo("1", updatedToDo));
+
         verify(toDoRepo).findById("1");
-        assertNull(actual);
     }
 
     @Test
