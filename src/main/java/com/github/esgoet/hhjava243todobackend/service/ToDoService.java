@@ -5,7 +5,6 @@ import com.github.esgoet.hhjava243todobackend.repository.ToDoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -13,7 +12,12 @@ import java.util.List;
 public class ToDoService {
     private final ToDoRepository repository;
 
-    public List<ToDo> getToDos() {
+    public List<ToDo> findToDos() {
         return repository.findAll();
+    }
+
+    public ToDo saveToDo(ToDo toDo) {
+        repository.save(toDo);
+        return toDo;
     }
 }

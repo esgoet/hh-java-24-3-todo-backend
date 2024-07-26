@@ -3,11 +3,8 @@ package com.github.esgoet.hhjava243todobackend.controller;
 import com.github.esgoet.hhjava243todobackend.model.ToDo;
 import com.github.esgoet.hhjava243todobackend.service.ToDoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,7 +15,12 @@ public class ToDoController {
 
     @GetMapping
     public List<ToDo> getToDos() {
-        return service.getToDos();
+        return service.findToDos();
+    }
+
+    @PostMapping
+    public ToDo saveToDo(@RequestBody ToDo toDo) {
+        return service.saveToDo(toDo);
     }
 
 }
