@@ -29,7 +29,11 @@ public class ToDoService {
     }
 
     public ToDo updateToDo(String id, ToDo updatedToDo) {
-        return repository.save(updatedToDo);
+        if (findToDo(id) != null) {
+            return repository.save(updatedToDo);
+        } else {
+            return null;
+        }
     }
 
     public void deleteToDo(String id) {
