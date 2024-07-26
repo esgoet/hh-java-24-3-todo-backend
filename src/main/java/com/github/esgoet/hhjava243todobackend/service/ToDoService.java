@@ -30,4 +30,8 @@ public class ToDoService {
     public ToDo updateToDo(String id, ToDo updatedToDo) {
         return repository.save(updatedToDo);
     }
+
+    public void deleteToDo(String id) {
+        repository.deleteById(id);
+    }
 }

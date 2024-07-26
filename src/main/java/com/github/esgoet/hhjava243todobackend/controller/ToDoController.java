@@ -33,5 +33,8 @@ public class ToDoController {
         return service.updateToDo(id, toDo);
     }
 
-
+    @DeleteMapping("/{id}")
+    public void deleteToDo(@PathVariable String id) {
+        service.deleteToDo(id);
+    }
 }
