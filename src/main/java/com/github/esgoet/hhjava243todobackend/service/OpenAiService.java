@@ -12,7 +12,7 @@ public class OpenAiService {
     private final RestClient client;
 
     public OpenAiService(@Value("${OPEN_AI_URL}") String baseUrl,
-                         @Value("${OPEN_AI_KEY") String key) {
+                         @Value("${OPEN_AI_KEY}") String key) {
         client = RestClient.builder()
                 .baseUrl(baseUrl)
                 //setzt Header für alle Anfragen --> Prinzip = Key, Value
@@ -21,8 +21,8 @@ public class OpenAiService {
     }
 
 
-    public String getAnswerFromOpenAi(String question) {
-        OpenAiRequest request = new OpenAiRequest("Correct the following for spelling and grammar mistakes. Return only the corrected version and nothing else: " + question,
+    public String reviseInput(String input) {
+        OpenAiRequest request = new OpenAiRequest("Return the following with correct spelling and grammar. Capitalize the first letter, don't put a dot in the end: " + input,
                  false);
 
         OpenAiResponse response = client.post()

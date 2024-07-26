@@ -17,7 +17,8 @@ import static org.mockito.Mockito.*;
 class ToDoServiceTest {
     ToDoRepo toDoRepo = mock(ToDoRepo.class);
     IdService idService = mock(IdService.class);
-    ToDoService service = new ToDoService(toDoRepo, idService);
+    OpenAiService openAiService = mock(OpenAiService.class);
+    ToDoService service = new ToDoService(toDoRepo, idService, openAiService);
 
     @Test
     void findToDosTest_whenNoToDos() {

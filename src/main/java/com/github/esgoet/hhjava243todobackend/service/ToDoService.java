@@ -15,6 +15,7 @@ import java.util.NoSuchElementException;
 public class ToDoService {
     private final ToDoRepo repository;
     private final IdService idService;
+    private final OpenAiService openAiService;
 
 
 
@@ -27,7 +28,8 @@ public class ToDoService {
     }
 
     public ToDo saveToDo(NewToDoDto toDo) {
-        ToDo tobeSaved = new ToDo(idService.generateId(), toDo.description(), Status.OPEN);
+        String revisedDesc = openAiService.reviseInput(toDo.description());
+        ToDo tobeSaved = new ToDo(idService.generateId(), revisedDesc, Status.OPEN);
         return repository.save(tobeSaved);
     }
 
