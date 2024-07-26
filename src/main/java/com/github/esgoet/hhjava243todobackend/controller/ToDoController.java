@@ -1,5 +1,6 @@
 package com.github.esgoet.hhjava243todobackend.controller;
 
+import com.github.esgoet.hhjava243todobackend.model.NewToDoDto;
 import com.github.esgoet.hhjava243todobackend.model.ToDo;
 import com.github.esgoet.hhjava243todobackend.service.ToDoService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class ToDoController {
     }
 
     @PostMapping
-    public ToDo saveToDo(@RequestBody ToDo toDo) {
+    public ToDo saveToDo(@RequestBody NewToDoDto toDo) {
         return service.saveToDo(toDo);
     }
 
