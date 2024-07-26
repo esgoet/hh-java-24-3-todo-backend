@@ -18,6 +18,11 @@ public class ToDoController {
         return service.findToDos();
     }
 
+    @GetMapping("/{id}")
+    public ToDo getToDo(@PathVariable String id ) {
+        return service.findToDo(id);
+    }
+
     @PostMapping
     public ToDo saveToDo(@RequestBody ToDo toDo) {
         return service.saveToDo(toDo);

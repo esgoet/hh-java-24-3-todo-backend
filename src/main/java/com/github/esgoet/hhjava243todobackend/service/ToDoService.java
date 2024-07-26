@@ -17,9 +17,12 @@ public class ToDoService {
         return repository.findAll();
     }
 
+    public ToDo findToDo(String id) {
+        return repository.findById(id).orElse(null);
+    }
+
     public ToDo saveToDo(ToDo toDo) {
         ToDo toDoToBeSaved = toDo.withId(idService.generateId());
-        repository.save(toDoToBeSaved);
-        return toDoToBeSaved;
+        return  repository.save(toDoToBeSaved);
     }
 }
