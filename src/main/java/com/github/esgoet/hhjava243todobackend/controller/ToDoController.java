@@ -28,4 +28,10 @@ public class ToDoController {
         return service.saveToDo(toDo);
     }
 
+    @PutMapping("/{id}")
+    public ToDo updateToDo(@PathVariable String id) {
+        return service.updateToDo(id);
+    }
+
+
 }

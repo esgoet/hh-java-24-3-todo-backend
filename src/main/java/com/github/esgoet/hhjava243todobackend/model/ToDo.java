@@ -6,8 +6,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @With
 @Document("todo")
 public record ToDo(
-        String id,
         String description,
+        String id,
         Status status
 ) {
 }
