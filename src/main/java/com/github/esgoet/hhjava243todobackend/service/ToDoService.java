@@ -27,20 +27,7 @@ public class ToDoService {
         return  repository.save(tobeSaved);
     }
 
-    public ToDo updateToDo(String id) {
-        ToDo toBeUpdated = findToDo(id);
-
-        if (toBeUpdated != null) {
-            ToDo updated;
-            if (toBeUpdated.status() == Status.OPEN) {
-                updated = toBeUpdated.withStatus(Status.IN_PROGRESS);
-            } else {
-                updated = toBeUpdated.withStatus(Status.DONE);
-            }
-            repository.delete(toBeUpdated);
-            repository.save(updated);
-            return updated;
-        }
-        return null;
+    public ToDo updateToDo(String id, ToDo updatedToDo) {
+        return repository.save(updatedToDo);
     }
 }
