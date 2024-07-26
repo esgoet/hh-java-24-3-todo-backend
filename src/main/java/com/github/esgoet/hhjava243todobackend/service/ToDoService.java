@@ -29,7 +29,7 @@ public class ToDoService {
     }
 
     public ToDo updateToDo(String id, ToDo updatedToDo) {
-        if (findToDo(id) != null) {
+        if (repository.findById(id).isPresent()) {
             return repository.save(updatedToDo);
         } else {
             return null;
